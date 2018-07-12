@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ПапаКава</string>
+    <string name="search">Setting</string>
+    <string name="navigation_menu_item_notification">ПапаКава</string>
+
+    <string name="notification_open">Open</string>
+    <string name="notification_close">Close</string>
+
+    <string name="navigation_item_profile">Профіль</string>
+    <string name="navigation_item_cava">Кава</string>
+    <string name="navigation_item_basket">Кошик</string>
+
+    <string name="textTvLaskZ">Повторити останнє замовлення</string>
+    <string name="ok">Ок</string>
+</resources>
