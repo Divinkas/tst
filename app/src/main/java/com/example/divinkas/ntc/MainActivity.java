@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.divinkas.ntc.adapter.TabsPagerFragmentAdapter;
 import com.example.divinkas.ntc.fragment.BottomFragmentSetting;
@@ -30,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
         bottomFragmentSetting = new BottomFragmentSetting();
         initToolbar();
         initTabLayout();
+
     }
 
-    private void initToolbar(){
+    public void initToolbar(){
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         });
         toolbar.inflateMenu(R.menu.menu);
     }
-
     private void initTabLayout() {
         viewPager = findViewById(R.id.viewPager);
 
