@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int LAYOUT = R.layout.activity_main;
     private static final int THEME_LAYOUT = R.style.AppDefault;
 
-    private BottomFragmentSetting bottomFragmentSetting;
+    public BottomFragmentSetting bottomFragmentSetting;
 
     Toolbar toolbar;
     ViewPager viewPager;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.settingFiltr:
                         //i'm need help in using change bottomSheetBehavior state
 
-                        //bottomFragmentSetting.show();
+                        bottomFragmentSetting.show();
                         break;
                     default:
                         break;
