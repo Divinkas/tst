@@ -1,16 +1,18 @@
 package com.example.divinkas.ntc.fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.divinkas.ntc.R;
 
-public class BottomFragmentSetting extends AppCompatActivity {
+public class BottomFragmentSetting extends Fragment {
     public BottomSheetBehavior bottomSheetBehavior;
     public LinearLayout linearLayout;
 
@@ -24,12 +26,13 @@ public class BottomFragmentSetting extends AppCompatActivity {
         }
     }
 
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_dialog_filtr);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dialog_filtr, container, false);
 
-        linearLayout = findViewById(R.id.bottom_sheet);
+        linearLayout = view.findViewById(R.id.bottom_sheet);
+
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         bottomSheetBehavior.setPeekHeight(340);
@@ -48,6 +51,8 @@ public class BottomFragmentSetting extends AppCompatActivity {
 
             }
         });
+
+        return view;
     }
 
 }

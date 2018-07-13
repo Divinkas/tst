@@ -1,13 +1,11 @@
 package com.example.divinkas.ntc;
 
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.divinkas.ntc.adapter.TabsPagerFragmentAdapter;
 import com.example.divinkas.ntc.fragment.BottomFragmentSetting;
