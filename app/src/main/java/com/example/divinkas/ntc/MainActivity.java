@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
 
-        bottomFragmentSetting = new BottomFragmentSetting();
+        bottomFragmentSetting = new BottomFragmentSetting(MainActivity.this);
         initToolbar();
         initTabLayout();
 
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.settingFiltr:
-                        //i'm need help in using change bottomSheetBehavior state
-
                         bottomFragmentSetting.show();
                         break;
                     default:

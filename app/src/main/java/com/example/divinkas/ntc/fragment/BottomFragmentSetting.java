@@ -1,43 +1,33 @@
 package com.example.divinkas.ntc.fragment;
 
-import android.app.Fragment;
-import android.os.Bundle;
+import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.divinkas.ntc.R;
 
-public class BottomFragmentSetting extends Fragment {
-    public BottomSheetBehavior bottomSheetBehavior;
-    public LinearLayout linearLayout;
+public class BottomFragmentSetting implements View.OnClickListener{
+    private BottomSheetBehavior bottomSheetBehavior;
+    private LinearLayout linearLayout;
+
+    private Button btnOk;
 
     public void show(){
         if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
-            bottomSheetBehavior.setPeekHeight(200);
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            bottomSheetBehavior.setPeekHeight(0);
         }
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dialog_filtr, container, false);
-
-        linearLayout = view.findViewById(R.id.bottom_sheet);
-
+    public BottomFragmentSetting(Activity activity){
+        linearLayout = activity.findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        bottomSheetBehavior.setPeekHeight(340);
-        bottomSheetBehavior.setHideable(false);
 
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -48,11 +38,19 @@ public class BottomFragmentSetting extends Fragment {
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
             }
         });
 
-        return view;
+        btnOk = activity.findViewById(R.id.btnOk_setFiltr);
+        btnOk.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnOk_setFiltr:
+                show();
+                break;
+        }
+    }
 }
