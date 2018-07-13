@@ -25,14 +25,12 @@ public class CavaFragment extends AbstractTabFragment {
         cavaFragment.setArguments(bundle);
         cavaFragment.setContext(ctx);
         cavaFragment.setTitle(ctx.getString(R.string.navigation_item_cava));
-
         return cavaFragment;
     }
 
     public void setContext(Context context){
         this.context = context;
     }
-
 
     @Nullable
     @Override
@@ -45,6 +43,9 @@ public class CavaFragment extends AbstractTabFragment {
 
         staggeredGridLayoutManagerVertical = new StaggeredGridLayoutManager(2,
                 LinearLayoutManager.VERTICAL);
+
+        // error - recyclerView.addView(new LastPurchasesFragment().getView());
+        // no result - getLayoutInflater().inflate(R.layout.fragment_dialog_filtr, container, false);
 
         recyclerView.setLayoutManager(staggeredGridLayoutManagerVertical);
 
