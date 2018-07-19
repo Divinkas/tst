@@ -41,97 +41,50 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:checked="false"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="test 1"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="test 1" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:checked="false"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="t 2"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="t 2"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:checked="false"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="test text 3"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="test text 3" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="checkbox 4"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="checkbox 4" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:checked="false"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="test 5"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="test 5" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="test 6"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="test 6"/>
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/colorblue_"
-            android:buttonTint="@color/colorWhite"
-            android:checked="false"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="long text filtr param"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite" />
+            style="@style/checkboxItemsMyStyle"
+            android:theme="@style/AlertDialog.AppCompat.Light"
+            android:text="long text filtr param" />
 
     </org.apmem.tools.layouts.FlowLayout>
 

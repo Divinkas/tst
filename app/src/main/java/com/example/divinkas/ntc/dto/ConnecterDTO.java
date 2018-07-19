@@ -16,9 +16,11 @@ public class ConnecterDTO {
     // :D
     public List<ItemTovar> getItemTovars(){
         for(int i = 1; i < 11; i++){
-            String text = "test tov " + i;
+
+            String text = "test test test test test test test ";
             ItemTovar item = new ItemTovar(text, "228$", R.drawable.kava_item);
-            if(i == 2){
+
+            if(i == 4){
                 item.setSaleRed(true);
                 item.setTextSale("Арабика");
             }

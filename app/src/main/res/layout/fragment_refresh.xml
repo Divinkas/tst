@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/lastOrderContainer"
-        android:orientation="vertical"
+        android:background="@color/colorWhite"
         android:visibility="visible"
+        android:paddingBottom="10dp"
         android:clickable="true"
         android:focusable="true">
+
         <ImageView
+            android:id="@+id/imgRefresh"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/imgRefresh"
-            android:visibility="visible"
+            android:layout_above="@+id/tvLastZ"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:src="@drawable/restore"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvLastZ"
-            android:textSize="15sp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            android:text="@string/textTvLaskZ"/>
-    </LinearLayout>
+            android:src="@drawable/restore"
+            android:visibility="visible"
+            android:layout_marginBottom="-77dp" />
+
+    <TextView
+        android:id="@+id/tvLastZ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="77dp"
+        android:text="@string/textTvLaskZ"
+        android:textAlignment="center"
+        android:textSize="15sp" />
+    </RelativeLayout>

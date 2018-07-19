@@ -10,14 +10,26 @@
     android:paddingRight="5dp"
     android:background="@color/colorLightGray_">
 
+    <!--<include layout="@layout/fragment_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:id="@+id/recycleView"
-                android:paddingBottom="50dp">
+    <GridView
+        android:id="@+id/grdView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            </android.support.v7.widget.RecyclerView>
+    </GridView>
+    -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:paddingBottom="50dp"
+        android:visibility="visible">
 
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

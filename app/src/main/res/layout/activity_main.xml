@@ -40,6 +40,7 @@
             android:layout_gravity="bottom"
             app:tabIndicatorColor="@color/colorOranges"
             app:tabIndicatorHeight="6dp"
+            app:tabSelectedTextColor="@color/colorOranges"
             style="@style/MyTabLayout"
             app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
             android:background="@color/colorWhite"/>

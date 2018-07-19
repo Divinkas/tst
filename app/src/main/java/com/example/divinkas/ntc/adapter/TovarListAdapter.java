@@ -28,8 +28,6 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.fragment_tovar_item, parent, false);
-
-        //getLayoutInflater().inflate(R.layout.fragment_dialog_filtr, parent, false);
         return new ViewHolder(view);
     }
 

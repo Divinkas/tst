@@ -37,9 +37,9 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         int[] imageResId = {
-                R.drawable.tabs_list_catalog,
-                R.drawable.account_user_icon,
-                R.drawable.cart};
+                R.drawable.format_align_justify,
+                R.drawable.account_circle,
+                R.drawable.cart_x};
         Drawable image = ctx.getResources().getDrawable(imageResId[position]);
         image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
         SpannableString sb = new SpannableString("   " + tabs.get(position).getTITLE());
