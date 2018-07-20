@@ -51,6 +51,9 @@ public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
                 itemTovar.setUrlTovar(item.getString("image_url"));
                 itemTovar.setPrice(item.getString("price"));
 
+                Log.println(Log.INFO, "restAPI", "first_marker: " + item.getString("first_marker"));
+                Log.println(Log.INFO, "restAPI", "second_marker: " + item.getString("second_marker"));
+
                 if(item.getString("first_marker").isEmpty()){
                     itemTovar.setSaleOrange(false);
                 } else {

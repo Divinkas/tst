@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/tovarItemContainer"
@@ -10,18 +11,18 @@
     android:background="@color/colorWhite">
 
     <TextView
+        android:id="@+id/tovarItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tovarItemName"
-        android:layout_marginTop="0dp"
         android:layout_marginBottom="15dp"
-        android:textSize="16sp"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:visibility="visible"
-        android:maxLines="1"
+        android:layout_marginTop="0dp"
         android:ellipsize="end"
-        android:singleLine="false"/>
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        android:visibility="visible"
+        />
     <ImageView
         android:id="@+id/tovarItemImage"
         android:layout_width="100dp"
