@@ -1,15 +1,23 @@
 package com.example.divinkas.ntc.dataTypes;
 
+import android.net.Uri;
+
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 public class ItemTovar {
 
     private String name;
     private String price;
     private Integer imageTovar;
+    private String urlTovar;
 
     private boolean isSaleOrange;
     private boolean isSaleRed;
     private String textSale;
 
+    public ItemTovar(){}
     public ItemTovar(String name, String price, Integer imageTovar){
         this.name = name;
         this.price = price;
@@ -67,5 +75,13 @@ public class ItemTovar {
 
     public void setTextSale(String textSale) {
         this.textSale = textSale;
+    }
+
+    public String getUrlTovar() {
+        return urlTovar;
+    }
+
+    public void setUrlTovar(String urlTovar){
+        this.urlTovar = urlTovar;
     }
 }

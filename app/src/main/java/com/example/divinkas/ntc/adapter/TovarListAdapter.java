@@ -1,25 +1,40 @@
 package com.example.divinkas.ntc.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.divinkas.ntc.R;
 import com.example.divinkas.ntc.dataTypes.ItemTovar;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<ItemTovar> itemTovarList;
+    private Context context;
 
     public TovarListAdapter(Context context, List <ItemTovar>  list){
+        this.context = context;
         itemTovarList = list;
         inflater = LayoutInflater.from(context);
     }
@@ -36,7 +51,30 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
         ItemTovar item = itemTovarList.get(position);
         holder.tovName.setText(item.getName());
         holder.tovPrice.setText(item.getPrice());
-        holder.tovImage.setImageResource(item.getImageTovar());
+
+
+        //holder.tovImage.setImageBitmap(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+
+        //Picasso.with(context).invalidate(item.getUrlTovar());
+        //Picasso.with(context).load(item.getUrlTovar()).into(holder.tovImage);
+        Glide.with(context).load(item.getUrlTovar()).into(holder.tovImage);
+        /*
+        try {
+            LoaderImg loaderImg = new LoaderImg();
+            loaderImg.execute(item.getUrlTovar());
+            Bitmap img = loaderImg.get();
+            holder.tovImage.setImageBitmap(img);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        */
+
+
+
+        Log.println(Log.INFO, "restAPI", item.getUrlTovar());
 
         if(item.isSaleOrange()){
             holder.saleOrange.setText(item.getTextSale());
@@ -70,4 +108,34 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
             saleRed = itemView.findViewById(R.id.tvSaleRed);
         }
     }
+    // don't work
+    /*
+    public class LoaderImg extends AsyncTask<String, Void, Bitmap>{
+
+        public LoaderImg(){}
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            URL url = null;
+            try {
+                url = new URL(strings[0]);
+                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
+                InputStream is = conn.getInputStream();
+                Bitmap bmImg = BitmapFactory.decodeStream(is);
+                return bmImg;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+        }
+    }
+    */
 }

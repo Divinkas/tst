@@ -22,8 +22,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:singleLine="false"/>
-
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/tovarItemImage"
         android:layout_width="100dp"
         android:layout_height="120dp"
@@ -31,7 +30,8 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="-10dp"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:adjustViewBounds="true"/>
 
 
     <TextView
