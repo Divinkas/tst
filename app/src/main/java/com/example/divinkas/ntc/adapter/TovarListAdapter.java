@@ -37,6 +37,7 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
                 break;
             default:
                 view = inflater.inflate(R.layout.fragment_tovar_item, parent, false);
+                //view.setVisibility(View.INVISIBLE);
                 break;
         }
         return new ViewHolder(view, viewType);
@@ -44,9 +45,9 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(position != 1) {
+        if(position != 1 && itemTovarList.get(position).showable) {
             ItemTovar item = itemTovarList.get(position);
-            if(item.showable) {
+
                 holder.tovName.setText(item.getName());
                 holder.tovPrice.setText(item.getPrice());
 
@@ -60,7 +61,7 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
                     holder.saleRed.setText(item.getTextSale());
                     holder.saleRed.setVisibility(View.VISIBLE);
                 }
-            }
+
         }
     }
 

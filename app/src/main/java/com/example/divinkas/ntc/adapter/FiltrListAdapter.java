@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.example.divinkas.ntc.R;
+import com.example.divinkas.ntc.fragment.CavaFragment;
 
 import java.util.List;
 
@@ -45,14 +46,8 @@ public class FiltrListAdapter extends RecyclerView.Adapter<FiltrListAdapter.View
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 show[position] = isChecked;
+                CavaFragment.filtration(show);
 
-                /*
-                for (int i = 0; i < show.length; i++){
-                    if(show[i]){ Log.println(Log.INFO, "cheked_list", i + " - true"); }
-                    else{ Log.println(Log.INFO, "cheked_list", i + " - false"); }
-                    }
-                Log.println(Log.INFO, "cheked_list", " - end ________________");
-                */
             }
         });
     }

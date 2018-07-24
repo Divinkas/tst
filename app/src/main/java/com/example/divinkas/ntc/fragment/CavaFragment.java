@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,10 @@ import java.util.concurrent.ExecutionException;
 
 public class CavaFragment extends AbstractTabFragment {
     private static final int LAYOUT_FRAGMENT = R.layout.fragment_cava;
-    RecyclerView recyclerViewTovars;
-    List<ItemTovar> listTovars;
-    List<String> filtList;
+    static RecyclerView recyclerViewTovars;
+    static List<ItemTovar> listTovars;
+    static List<String> filtList;
+    static Context contextStatic;
     private static BottomFragmentSetting bottomFragmentSetting;
 
     public static CavaFragment getInstance(Context ctx){
@@ -58,6 +60,7 @@ public class CavaFragment extends AbstractTabFragment {
         ConnecterDTO connecterDTO = new ConnecterDTO();
         connecterDTO.execute();
 
+        contextStatic = getContext();
         listTovars = null;
         try {
             listTovars = connecterDTO.get();
@@ -82,33 +85,54 @@ public class CavaFragment extends AbstractTabFragment {
 
         return view;
     }
-    public void filtration(boolean[] show) {
-        for(int  i = 0; i < show.length; i++){
-
-            for(int j = 0; j < listTovars.size(); i++){
-                if(!show[i]){
-                    if(listTovars.get(j).getBrand_name().equals(filtList.get(i))){
-                        listTovars.get(j).showable = false;
+    public static void filtration(boolean[] show) {
+        for(int i = 0; i<listTovars.size(); i++){
+            int flag = 1;
+            for (int j = 0; j<show.length; j++){
+                if(!show[j] && listTovars.get(i)!=null){
+                    if(filtList.get(j).equals(listTovars.get(i).getBrand_name())){
+                        flag = removeItem(i, false, false);
+                        continue;
                     }
-                }
-                if(i == 0 && !show[i]){
-                    if(listTovars.get(j).getType_weight() == 1){
-                        listTovars.get(j).showable = false;
+                    if(j == 0){
+                        if(listTovars.get(i).getType_weight() == 1){
+                            flag = removeItem(i, false, false);
+                            continue;
+                        }
                     }
-                }
-                if(i == 1 && !show[i]){
-                    if(listTovars.get(j).getType_weight() == 2){
-                        listTovars.get(j).showable = false;
+                    if(j == 1){
+                        if(listTovars.get(i).getType_weight() == 2){
+                            flag = removeItem(i, false, false);
+                            break;
+                        }
                     }
-                }
-                if(i == 2 && !show[i]){
-                    if(listTovars.get(j).getType_weight() == 3){
-                        listTovars.get(j).showable = false;
+                    if(j == 2){
+                        if(listTovars.get(i).getType_weight() == 3){
+                            flag = removeItem(i, false, false);
+                            continue;
+                        }
                     }
                 }
             }
-
+            if(listTovars.get(i) != null) {
+                if (flag == 1 && !listTovars.get(i).showable) {
+                    flag = removeItem(i, true, true);
+                }
+            }
         }
 
+    }
+    public static int removeItem(int id, boolean isVisible, boolean isAdd){
+        listTovars.get(id).showable = isVisible;
+        if(!isAdd){
+            recyclerViewTovars.getAdapter().notifyItemRemoved(id);
+            recyclerViewTovars.getAdapter().notifyItemRangeRemoved(id, recyclerViewTovars.getChildCount() -1);
+            return 0;
+        }
+        else{
+            recyclerViewTovars.getAdapter().notifyItemInserted(id);
+            //recyclerViewTovars.getAdapter().notifyItemRangeInserted(id, recyclerViewTovars.getChildCount()+1);
+        }
+        return 1;
     }
 }
