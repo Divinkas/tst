@@ -46,18 +46,20 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(position != 1) {
             ItemTovar item = itemTovarList.get(position);
-            holder.tovName.setText(item.getName());
-            holder.tovPrice.setText(item.getPrice());
+            if(item.showable) {
+                holder.tovName.setText(item.getName());
+                holder.tovPrice.setText(item.getPrice());
 
-            Glide.with(context).load(item.getUrlTovar()).into(holder.tovImage);
+                Glide.with(context).load(item.getUrlTovar()).into(holder.tovImage);
 
-            if (item.isSaleOrange()) {
-                holder.saleOrange.setText(item.getTextSale());
-                holder.saleOrange.setVisibility(View.VISIBLE);
-            }
-            if (item.isSaleRed()) {
-                holder.saleRed.setText(item.getTextSale());
-                holder.saleRed.setVisibility(View.VISIBLE);
+                if (item.isSaleOrange()) {
+                    holder.saleOrange.setText(item.getTextSale());
+                    holder.saleOrange.setVisibility(View.VISIBLE);
+                }
+                if (item.isSaleRed()) {
+                    holder.saleRed.setText(item.getTextSale());
+                    holder.saleRed.setVisibility(View.VISIBLE);
+                }
             }
         }
     }

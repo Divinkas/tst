@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
 
-    private List<ItemTovar> itemTovarList;
+    private static List<ItemTovar> itemTovarList;
     private FiltrListTov filtrListTov;
     public ConnecterDTO(){
         itemTovarList = new ArrayList<>();
@@ -54,7 +54,7 @@ public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
                 itemTovar.setPrice(item.getString("price"));
                 itemTovar.setBrand_name(item.getString("brand_name"));
                 itemTovar.setType_weight(item.getInt("weight_type"));
-
+                itemTovar.showable = true;
                 if(item.getString("first_marker").isEmpty()){
                     itemTovar.setSaleOrange(false);
                 } else {

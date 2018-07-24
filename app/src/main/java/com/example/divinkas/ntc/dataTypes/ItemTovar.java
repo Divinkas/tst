@@ -15,6 +15,8 @@ public class ItemTovar {
     private boolean isSaleRed;
     private String textSale;
 
+    public boolean showable;
+
     public ItemTovar(){}
     public ItemTovar(String name, String price, Integer imageTovar){
         this.name = name;
