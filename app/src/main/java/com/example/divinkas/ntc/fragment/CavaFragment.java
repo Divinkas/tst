@@ -12,18 +12,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.divinkas.ntc.R;
+import com.example.divinkas.ntc.adapter.FiltrListAdapter;
 import com.example.divinkas.ntc.adapter.TovarListAdapter;
+import com.example.divinkas.ntc.dataTypes.FiltrListTov;
 import com.example.divinkas.ntc.dataTypes.ItemTovar;
 import com.example.divinkas.ntc.dto.ConnecterDTO;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 
-import org.json.JSONException;
-
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class CavaFragment extends AbstractTabFragment {
     private static final int LAYOUT_FRAGMENT = R.layout.fragment_cava;
+
+    private static BottomFragmentSetting bottomFragmentSetting;
+
     public static CavaFragment getInstance(Context ctx){
 
         Bundle bundle = new Bundle();
@@ -33,7 +41,10 @@ public class CavaFragment extends AbstractTabFragment {
         cavaFragment.setTitle(ctx.getString(R.string.navigation_item_cava));
         return cavaFragment;
     }
+    public static void showBottomBehavior(){
+        bottomFragmentSetting.show();
 
+    }
     public void setContext(Context context){
         this.context = context;
     }
@@ -44,11 +55,6 @@ public class CavaFragment extends AbstractTabFragment {
         view = inflater.inflate(LAYOUT_FRAGMENT, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycleView);
-
-            // error - recyclerView.addView(new LastPurchasesFragment().getView());
-            // no result - getLayoutInflater().inflate(R.layout.fragment_dialog_filtr, container, false);
-            //recyclerView.setLayoutManager(staggeredGridLayoutManagerVertical);
-
 
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
@@ -64,7 +70,6 @@ public class CavaFragment extends AbstractTabFragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Log.println(Log.INFO, "restAPI", "list in cavaFragment - " + list.size());
 
         TovarListAdapter tovarListAdapter = new TovarListAdapter(
                 context,
@@ -73,6 +78,22 @@ public class CavaFragment extends AbstractTabFragment {
 
         recyclerView.setAdapter(tovarListAdapter);
 
+        List<String> filtrItems = new ArrayList<>();
+        filtrItems.addAll(FiltrListTov.getFiltrList());
+        Collections.sort(filtrItems);
+
+        bottomFragmentSetting = new BottomFragmentSetting(view);
+
+        RecyclerView recyclerView1 = view.findViewById(R.id.filtrContainer);
+        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(getContext());
+        flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
+        flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
+        recyclerView1.setLayoutManager(flexboxLayoutManager);
+
+        FiltrListAdapter filtrListAdapter = new FiltrListAdapter(getContext(), filtrItems);
+        recyclerView1.setAdapter(filtrListAdapter);
+
         return view;
     }
+
 }

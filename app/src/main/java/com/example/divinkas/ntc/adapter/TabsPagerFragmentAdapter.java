@@ -9,6 +9,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 
+import com.example.divinkas.ntc.MainActivity;
 import com.example.divinkas.ntc.R;
 import com.example.divinkas.ntc.fragment.AbstractTabFragment;
 import com.example.divinkas.ntc.fragment.BasketFragment;
@@ -29,6 +30,7 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
         initFragments(context);
     }
 
+
     @Override
     public Fragment getItem(int position) {
         return tabs.get(position);
@@ -36,18 +38,24 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
+
+                /*
+
         int[] imageResId = {
-                R.drawable.format_align_justify,
-                R.drawable.account_circle,
-                R.drawable.cart_x};
+                R.drawable.selector_cava_list,
+                R.drawable.selector_icon_account,
+                R.drawable.selector_basket_icon};
+
         Drawable image = ctx.getResources().getDrawable(imageResId[position]);
         image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
         SpannableString sb = new SpannableString("   " + tabs.get(position).getTITLE());
         ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
         sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return sb;
-        //return tabs.get(position).getTITLE();
+         */
+        return tabs.get(position).getTITLE();
     }
+
 
     @Override
     public int getCount() {

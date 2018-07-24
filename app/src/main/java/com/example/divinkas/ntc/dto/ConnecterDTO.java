@@ -1,9 +1,8 @@
 package com.example.divinkas.ntc.dto;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.divinkas.ntc.R;
+import com.example.divinkas.ntc.dataTypes.FiltrListTov;
 import com.example.divinkas.ntc.dataTypes.ItemTovar;
 
 import org.json.JSONArray;
@@ -13,14 +12,17 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
 
     private List<ItemTovar> itemTovarList;
-    public ConnecterDTO(){itemTovarList = new ArrayList<>(); }
+    private FiltrListTov filtrListTov;
+    public ConnecterDTO(){
+        itemTovarList = new ArrayList<>();
+        filtrListTov = new FiltrListTov();
+    }
 
     @Override
     protected List<ItemTovar> doInBackground(Void... voids) {
@@ -31,28 +33,27 @@ public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
                     .ignoreContentType(true)
                     .get();
 
-            Log.println(Log.INFO, "restAPI", document.toString());
-            //Element obj = document.text();
-
             String result = document.text();
-            Log.println(Log.INFO, "restAPI", result);
 
             JSONObject jsonObject = new JSONObject(result);
             JSONArray arrayTovars = jsonObject.getJSONArray("products");
 
             for (int i = 0; i < arrayTovars.length(); i++){
 
+                if(i == 1){
+                    itemTovarList.add(null);
+                }
+
                 ItemTovar itemTovar = new ItemTovar();
                 JSONObject item = arrayTovars.getJSONObject(i);
 
-                Log.println(Log.INFO, "restAPI", item.toString());
+                filtrListTov.addItem(item.getString("brand_name"));
 
                 itemTovar.setName(item.getString("name"));
                 itemTovar.setUrlTovar(item.getString("image_url"));
                 itemTovar.setPrice(item.getString("price"));
-
-                Log.println(Log.INFO, "restAPI", "first_marker: " + item.getString("first_marker"));
-                Log.println(Log.INFO, "restAPI", "second_marker: " + item.getString("second_marker"));
+                itemTovar.setBrand_name(item.getString("brand_name"));
+                itemTovar.setType_weight(item.getInt("weight_type"));
 
                 if(item.getString("first_marker").isEmpty()){
                     itemTovar.setSaleOrange(false);
@@ -69,7 +70,6 @@ public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
 
                 itemTovarList.add(itemTovar);
             }
-            Log.println(Log.INFO, "restAPI", "list count - " + itemTovarList.size());
 
             return itemTovarList;
         }
@@ -82,26 +82,4 @@ public class ConnecterDTO extends AsyncTask<Void, Void, List<ItemTovar>> {
     protected void onPostExecute(List<ItemTovar> list) {
         super.onPostExecute(list);
     }
-
-    // old render data
-    /*
-    public List<ItemTovar> getItemTovars(){
-        for(int i = 1; i < 11; i++){
-
-            String text = "test test test test test test test ";
-            ItemTovar item = new ItemTovar(text, "228$", R.drawable.kava_item);
-
-            if(i == 4){
-                item.setSaleRed(true);
-                item.setTextSale("Арабика");
-            }
-            if(i == 3){
-                item.setSaleOrange(true);
-                item.setTextSale("робуста");
-            }
-            itemTovarList.add(item);
-        }
-        return itemTovarList;
-    }
-    */
 }

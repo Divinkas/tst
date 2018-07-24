@@ -43,9 +43,10 @@
             app:tabSelectedTextColor="@color/colorOranges"
             style="@style/MyTabLayout"
             app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-            android:background="@color/colorWhite"/>
+            android:background="@color/colorWhite"
+            app:tabGravity="fill"
+            app:tabMode="fixed"/>
 
-        <include layout="@layout/fragment_dialog_filtr"/>
     </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

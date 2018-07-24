@@ -1,23 +1,33 @@
 package com.example.divinkas.ntc;
 
-import android.graphics.PorterDuff;
+import android.annotation.SuppressLint;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.divinkas.ntc.adapter.TabsPagerFragmentAdapter;
 import com.example.divinkas.ntc.fragment.BottomFragmentSetting;
+import com.example.divinkas.ntc.fragment.CavaFragment;
+
+import org.w3c.dom.Text;
+
+import java.util.Objects;
+
+import static com.example.divinkas.ntc.R.color.colorGray_;
+import static com.example.divinkas.ntc.R.color.colorOranges;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int LAYOUT = R.layout.activity_main;
     private static final int THEME_LAYOUT = R.style.AppDefault;
 
-    public BottomFragmentSetting bottomFragmentSetting;
+
 
     Toolbar toolbar;
     ViewPager viewPager;
@@ -28,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
 
-        bottomFragmentSetting = new BottomFragmentSetting(MainActivity.this);
         initToolbar();
         initTabLayout();
 
@@ -42,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.settingFiltr:
-                        bottomFragmentSetting.show();
+                        CavaFragment.showBottomBehavior();
                         break;
                     default:
                         break;
@@ -53,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
         toolbar.inflateMenu(R.menu.menu);
     }
+    @SuppressLint("ResourceAsColor")
     private void initTabLayout() {
         viewPager = findViewById(R.id.viewPager);
 
@@ -61,34 +71,43 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(tabsPagerFragmentAdapter);
         viewPager.setCurrentItem(Constants.TAB_ONE);
 
-        TabLayout tabLayout  = findViewById(R.id.tabLayoutMain);
+
+
+        final TabLayout tabLayout  = findViewById(R.id.tabLayoutMain);
         tabLayout.setupWithViewPager(viewPager);
 
-        /*
+
         int[] imageResId = {
-                R.drawable.format_align_justify,
-                R.drawable.account_circle,
-                R.drawable.cart_x};
-        for(int i=0; i < tabLayout.getTabCount(); i++){
-            tabLayout.getTabAt(i).setIcon(imageResId[i]);
-            //tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+                R.drawable.selector_cava_list,
+                R.drawable.selector_icon_account,
+                R.drawable.selector_basket_icon};
+
+
+
+
+
+        for(int i = 0; i< tabLayout.getTabCount(); i++) {
+
+            Objects.requireNonNull(tabLayout.getTabAt(i)).setIcon(imageResId[i]);
+
+        /*    tabLayout.getTabAt(i).setCustomView(R.layout.custom_tab_item);
+
+            if (tabLayout.getTabAt(i).getCustomView() != null) {
+
+                ImageView imageView = tabLayout.getTabAt(i).getCustomView().findViewById(R.id.icon);
+                TextView textView = tabLayout.getTabAt(i).getCustomView().findViewById(R.id.text);
+
+                textView.setText(tabsPagerFragmentAdapter.getPageTitle(i));
+                textView.setTextColor(colorGray_);
+                imageView.setImageResource(imageResId[i]);
+
+                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
+                lp.bottomMargin = 0;
+                imageView.requestLayout();
+            }
+            */
         }
+        //tabLayout.setTabTextColors(R.color.colorGray_, R.color.colorOranges);
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager){
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                super.onTabSelected(tab);
-                int tabIconColor = ContextCompat.getColor(MainActivity.this, R.color.colorOranges);
-                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                super.onTabUnselected(tab);
-                int tabIconColor = ContextCompat.getColor(MainActivity.this, R.color.colorGray_);
-                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
-            }
-        });
-        */
     }
 }

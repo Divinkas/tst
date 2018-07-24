@@ -4,32 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:visibility="visible"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
     android:background="@color/colorLightGray_">
-
-    <!--<include layout="@layout/fragment_refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <GridView
-        android:id="@+id/grdView"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-    </GridView>
-    -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:paddingBottom="50dp"
-        android:visibility="visible">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="60dp"
+            android:visibility="visible">
 
 
-    </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
+
+        <include layout="@layout/fragment_dialog_filtr" />
+
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

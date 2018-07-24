@@ -8,6 +8,7 @@
     android:orientation="vertical"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
+    android:layout_marginBottom="30dp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <Button
@@ -29,65 +30,24 @@
         android:background="@color/colorGray_"
         android:layout_marginBottom="5dp"/>
 
-    <org.apmem.tools.layouts.FlowLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.google.android.flexbox.FlexboxLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        app:flexWrap="wrap"
         android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="10dp"
-        android:visibility="visible">
+        android:textAlignment="center"
+        app:alignContent="center"
+        app:justifyContent="center"
+        android:layout_marginBottom="56dp">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="test 1" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/filtrContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="t 2"/>
+        </android.support.v7.widget.RecyclerView>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="test text 3" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="checkbox 4" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="test 5" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="test 6"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkboxItemsMyStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"
-            android:text="long text filtr param" />
-
-    </org.apmem.tools.layouts.FlowLayout>
-
+    </com.google.android.flexbox.FlexboxLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"

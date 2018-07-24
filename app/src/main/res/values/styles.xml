@@ -15,6 +15,7 @@
         <item name="tabTextAppearance">@style/TabText</item>
         <item name="tabSelectedTextColor">@color/colorOranges</item>
         <item name="tabIndicatorHeight">1px</item>
+
     </style>
 
     <style name="TabText" parent="TextAppearance.Design.Tab">

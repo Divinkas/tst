@@ -1,13 +1,8 @@
 package com.example.divinkas.ntc.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +12,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.divinkas.ntc.R;
 import com.example.divinkas.ntc.dataTypes.ItemTovar;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.ViewHolder> {
-
+    private final static int TYPE_VIEW_ONE = 0;
+    private final static int TYPE_VIEW_TWO = 1;
     private LayoutInflater inflater;
     private List<ItemTovar> itemTovarList;
     private Context context;
@@ -42,49 +30,45 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.fragment_tovar_item, parent, false);
-        return new ViewHolder(view);
+        View view;
+        switch (viewType){
+            case TYPE_VIEW_TWO:
+                view = inflater.inflate(R.layout.fragment_refresh, parent, false);
+                break;
+            default:
+                view = inflater.inflate(R.layout.fragment_tovar_item, parent, false);
+                break;
+        }
+        return new ViewHolder(view, viewType);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ItemTovar item = itemTovarList.get(position);
-        holder.tovName.setText(item.getName());
-        holder.tovPrice.setText(item.getPrice());
+        if(position != 1) {
+            ItemTovar item = itemTovarList.get(position);
+            holder.tovName.setText(item.getName());
+            holder.tovPrice.setText(item.getPrice());
 
+            Glide.with(context).load(item.getUrlTovar()).into(holder.tovImage);
 
-        //holder.tovImage.setImageBitmap(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
-
-        //Picasso.with(context).invalidate(item.getUrlTovar());
-        //Picasso.with(context).load(item.getUrlTovar()).into(holder.tovImage);
-        Glide.with(context).load(item.getUrlTovar()).into(holder.tovImage);
-        /*
-        try {
-            LoaderImg loaderImg = new LoaderImg();
-            loaderImg.execute(item.getUrlTovar());
-            Bitmap img = loaderImg.get();
-            holder.tovImage.setImageBitmap(img);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+            if (item.isSaleOrange()) {
+                holder.saleOrange.setText(item.getTextSale());
+                holder.saleOrange.setVisibility(View.VISIBLE);
+            }
+            if (item.isSaleRed()) {
+                holder.saleRed.setText(item.getTextSale());
+                holder.saleRed.setVisibility(View.VISIBLE);
+            }
         }
+    }
 
-        */
-
-
-
-        Log.println(Log.INFO, "restAPI", item.getUrlTovar());
-
-        if(item.isSaleOrange()){
-            holder.saleOrange.setText(item.getTextSale());
-            holder.saleOrange.setVisibility(View.VISIBLE);
+    @Override
+    public int getItemViewType(int position) {
+        switch (position){
+            case 1:
+                return TYPE_VIEW_TWO;
         }
-        if(item.isSaleRed()){
-            holder.saleRed.setText(item.getTextSale());
-            holder.saleRed.setVisibility(View.VISIBLE);
-        }
-
+        return TYPE_VIEW_ONE;
     }
 
     @Override
@@ -99,43 +83,16 @@ public class TovarListAdapter extends RecyclerView.Adapter<TovarListAdapter.View
         TextView saleOrange;
         TextView saleRed;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, int viewType) {
             super(itemView);
-            tovName = itemView.findViewById(R.id.tovarItemName);
-            tovPrice = itemView.findViewById(R.id.tovarItemPrice);
-            tovImage = itemView.findViewById(R.id.tovarItemImage);
-            saleOrange = itemView.findViewById(R.id.tvSaleOrange);
-            saleRed = itemView.findViewById(R.id.tvSaleRed);
-        }
-    }
-    // don't work
-    /*
-    public class LoaderImg extends AsyncTask<String, Void, Bitmap>{
-
-        public LoaderImg(){}
-        @Override
-        protected Bitmap doInBackground(String... strings) {
-            URL url = null;
-            try {
-                url = new URL(strings[0]);
-                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-                conn.setDoInput(true);
-                conn.connect();
-                InputStream is = conn.getInputStream();
-                Bitmap bmImg = BitmapFactory.decodeStream(is);
-                return bmImg;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(viewType ==TYPE_VIEW_ONE) {
+                tovName = itemView.findViewById(R.id.tovarItemName);
+                tovPrice = itemView.findViewById(R.id.tovarItemPrice);
+                tovImage = itemView.findViewById(R.id.tovarItemImage);
+                saleOrange = itemView.findViewById(R.id.tvSaleOrange);
+                saleRed = itemView.findViewById(R.id.tvSaleRed);
             }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
         }
     }
-    */
+
 }
