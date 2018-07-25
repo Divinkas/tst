@@ -109,7 +109,6 @@ public class CavaFragment extends AbstractTabFragment {
                     if(j == 2){
                         if(listTovars.get(i).getType_weight() == 3){
                             flag = removeItem(i, false, false);
-                            continue;
                         }
                     }
                 }
@@ -126,12 +125,12 @@ public class CavaFragment extends AbstractTabFragment {
         listTovars.get(id).showable = isVisible;
         if(!isAdd){
             recyclerViewTovars.getAdapter().notifyItemRemoved(id);
-            recyclerViewTovars.getAdapter().notifyItemRangeRemoved(id, recyclerViewTovars.getChildCount() -1);
+            //recyclerViewTovars.getAdapter().notifyItemRangeChanged(id, recyclerViewTovars.getChildCount() );
             return 0;
         }
         else{
             recyclerViewTovars.getAdapter().notifyItemInserted(id);
-            //recyclerViewTovars.getAdapter().notifyItemRangeInserted(id, recyclerViewTovars.getChildCount()+1);
+            //recyclerViewTovars.getAdapter().notifyItemRangeChanged(id, recyclerViewTovars.getChildCount());
         }
         return 1;
     }

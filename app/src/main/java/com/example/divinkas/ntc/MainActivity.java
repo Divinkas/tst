@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -88,26 +89,37 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i = 0; i< tabLayout.getTabCount(); i++) {
 
-            Objects.requireNonNull(tabLayout.getTabAt(i)).setIcon(imageResId[i]);
+            //Objects.requireNonNull(tabLayout.getTabAt(i)).setIcon(imageResId[i]);
 
-        /*    tabLayout.getTabAt(i).setCustomView(R.layout.custom_tab_item);
-
-            if (tabLayout.getTabAt(i).getCustomView() != null) {
-
-                ImageView imageView = tabLayout.getTabAt(i).getCustomView().findViewById(R.id.icon);
-                TextView textView = tabLayout.getTabAt(i).getCustomView().findViewById(R.id.text);
-
+                TextView textView = (TextView) LayoutInflater.from(getBaseContext()).inflate(R.layout.custom_tab_item, null);
                 textView.setText(tabsPagerFragmentAdapter.getPageTitle(i));
-                textView.setTextColor(colorGray_);
-                imageView.setImageResource(imageResId[i]);
+                textView.setCompoundDrawablesWithIntrinsicBounds(imageResId[i], 0, 0, 0);
+                //textView.setTextColor(colorGray_);
 
-                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
-                lp.bottomMargin = 0;
-                imageView.requestLayout();
-            }
-            */
+            Objects.requireNonNull(tabLayout.getTabAt(i)).setCustomView(textView);
+
+
         }
-        //tabLayout.setTabTextColors(R.color.colorGray_, R.color.colorOranges);
+        tabLayout.setTabTextColors(R.color.colorGray_, R.color.colorOranges);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                assert tab.getCustomView() != null;
+                TextView  textView = tab.getCustomView().findViewById(R.id.text);
+                textView.setTextColor(R.color.colorOranges);
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                assert tab.getCustomView() != null;
+                TextView  textView = tab.getCustomView().findViewById(R.id.text);
+                textView.setTextColor(R.color.colorGray_);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }
